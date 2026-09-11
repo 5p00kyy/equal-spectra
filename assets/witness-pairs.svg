@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Equal counts, different dependencies</title>
+  <desc id="desc">Distance 1. A has disjoint pairs 0 to 1 and 7 to 8. B has pairs 0 to 1 and 1 to 2, sharing sensor 1. Schematic, not to spatial scale.</desc>
+  <path d="M240 8V150" stroke="#3b4350"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#f5f2eb">
+    <text x="10" y="24" fill="#9aa7ff" font-weight="700">A</text>
+    <text x="32" y="24">Disjoint pairs</text>
+    <text x="260" y="24" fill="#ef977e" font-weight="700">B</text>
+    <text x="282" y="24">Shared sensor</text>
+  </g>
+  <g stroke="#8191ff" stroke-width="2.5">
+    <path d="M31 80C31 39 91 39 91 80M147 80C147 39 207 39 207 80"/>
+    <g fill="#151a23"><circle cx="31" cy="80" r="19"/><circle cx="91" cy="80" r="19"/><circle cx="147" cy="80" r="19"/><circle cx="207" cy="80" r="19"/></g>
+  </g>
+  <g stroke="#ef896c" stroke-width="2.5" stroke-dasharray="5 3">
+    <path d="M282 80C282 39 365 39 365 80M365 80C365 39 448 39 448 80"/>
+    <g fill="#151a23"><circle cx="282" cy="80" r="19"/><circle cx="365" cy="80" r="19"/><circle cx="448" cy="80" r="19"/></g>
+  </g>
+  <circle cx="365" cy="80" r="14" stroke="#f5f2eb" stroke-width="1"/>
+  <g fill="#f5f2eb" font-family="monospace" font-size="18" text-anchor="middle">
+    <text x="31" y="86">0</text><text x="91" y="86">1</text><text x="147" y="86">7</text><text x="207" y="86">8</text>
+    <text x="282" y="86">0</text><text x="365" y="86">1</text><text x="448" y="86">2</text>
+  </g>
+  <g stroke="#667084" stroke-width="1"><path d="M13 110V115H109V110M129 110V115H225V110M264 110V115H466V110"/></g>
+  <g fill="#c1c7d2" font-family="Arial, Helvetica, sans-serif" font-size="15" text-anchor="middle"><text x="119" y="141">No shared endpoint</text><text x="365" y="141">Both depend on position 1</text></g>
+</svg>

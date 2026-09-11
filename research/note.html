@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Equal spectra, unequal failure risk</title><style>
+@page{size:A4;margin:17mm 18mm}*{box-sizing:border-box}body{margin:0;color:#17242c;font:10pt/1.35 Georgia,'Times New Roman',serif;background:#e9eeef}.page{width:174mm;min-height:259mm;margin:16px auto;padding:0;background:white;break-after:page}.page:last-child{break-after:auto}h1{font:700 28pt/1.08 Georgia,serif;letter-spacing:-.6px;margin:10px 0 12px}h2{font-size:15pt;margin:14px 0 7px}h3{font-size:11pt;margin:12px 0 5px}p{margin:7px 0}.eyebrow,.footer{font:9pt/1.4 Arial,sans-serif;color:#53666b}.eyebrow{text-transform:uppercase;letter-spacing:1.2px;padding-top:10px}.lead{font-size:12pt}.box{border-left:3px solid #187b78;padding:8px 12px;background:#eef6f4;margin:12px 0}.eq{font-family:'Times New Roman',serif;font-size:12pt;text-align:center;margin:9px 0}table{border-collapse:collapse;width:100%;font-size:10pt;margin:10px 0}th,td{padding:6px 8px;border-bottom:1px solid #d6e0e2;text-align:left}th{font:700 9pt Arial,sans-serif;color:#3d5a62}code,pre{font:9pt/1.45 monospace}pre{background:#f1f4f5;padding:10px;white-space:pre-wrap}.small{font-size:9pt}a{color:#11635f;text-decoration:none}.footer{margin-top:12px;border-top:1px solid #bcced0;padding-top:7px}ul,ol{padding-left:21px}li{margin:4px 0}svg{width:100%;height:auto}.proof{font-style:italic}.proof span{font-style:normal}@media print{body{background:white}.page{margin:0;width:auto;min-height:0;box-shadow:none}}@media screen{.page{padding:17mm 18mm;width:210mm;min-height:297mm;box-shadow:0 3px 18px #0001}}
+</style></head><body>
+<section class="page">
+<div class="eyebrow">Research note · 11 September 2026 · candidate, not novelty-cleared</div>
+<h1>Equal spectra,<br>unequal failure risk</h1>
+<p class="lead">A sharp deletion bound and exponential reliability separation for homometric integer arrays</p>
+<div class="box"><strong>Abstract.</strong> We exhibit two seven-point integer arrays with identical complete difference multiplicities but different resilience of a specified lag set. The ratio of minimum destructive-deletion sizes is at most two for any homometric pair; a separated-block construction attains the bound at every size in an infinite family. More strongly, at every fixed independent sensor-failure probability <i>p</i> ∈ (0,1), the family's structural-loss probability ratio grows exponentially, although both its intact and mean randomly damaged power spectra agree. The arguments are elementary. Their prior publication and significance remain unresolved.</div>
+<h2>1. Setting and an explicit pair</h2>
+<p>Let <i>S</i> ⊂ ℤ be finite, with distinct positions and unit sensor weights. For <i>d</i> &gt; 0, let <i>w</i><sub>S</sub>(<i>d</i>) count pairs {<i>x</i>, <i>x</i>+<i>d</i>} in <i>S</i>. Two equal-size sets are <em>homometric</em> when these counts agree for every positive <i>d</i>.</p>
+<p>Fix a nonempty set <i>L</i> of positive lags represented in both arrays. Define ρ<sub>L</sub>(<i>S</i>) as the smallest number of deleted sensors that eliminates <em>at least one</em> lag in <i>L</i>. The guaranteed deletion tolerance is ρ<sub>L</sub>−1.</p>
+<pre>A = {0, 1, 5, 7, 8, 10, 12}
+B = {0, 1, 2, 5, 7,  9, 12}     L = {1, 2, 3, 4, 5}</pre>
+<p>For <i>d</i> = 1,…,12, both positive-difference histograms are</p>
+<div class="eq">(2, 3, 2, 2, 3, 1, 3, 1, 1, 1, 1, 1).</div>
+<p>Nevertheless, their per-lag minimum deletion sizes for <i>L</i> are respectively (2,2,2,2,2) and (1,2,2,1,2). Thus ρ<sub>L</sub>(<i>A</i>) = 2 and ρ<sub>L</sub>(<i>B</i>) = 1. Reflection of <i>A</i> is not <i>B</i>, so this is not a trivial translated or reflected pair.</p>
+<svg viewBox="0 0 620 104" role="img" aria-label="At distance one, A uses two disjoint pairs; B uses two pairs sharing the central sensor."><rect x="0" y="0" width="620" height="104" rx="5" fill="#eef6f4"/><g font-family="Arial" font-size="14" fill="#17242c"><text x="16" y="26">Distance 1 in A</text><text x="333" y="26">Distance 1 in B</text><path d="M40 58H105 M180 58H245" stroke="#187b78" stroke-width="4"/><path d="M360 58H435H510" stroke="#bb6944" stroke-width="4"/><g fill="#187b78"><circle cx="40" cy="58" r="7"/><circle cx="105" cy="58" r="7"/><circle cx="180" cy="58" r="7"/><circle cx="245" cy="58" r="7"/></g><g fill="#bb6944"><circle cx="360" cy="58" r="7"/><circle cx="435" cy="58" r="9"/><circle cx="510" cy="58" r="7"/></g><text x="36" y="85">0</text><text x="101" y="85">1</text><text x="176" y="85">7</text><text x="241" y="85">8</text><text x="356" y="85">0</text><text x="431" y="85">1</text><text x="506" y="85">2</text></g></svg>
+<p>In <i>A</i>, deleting one sensor cannot hit both distance-one pairs. In <i>B</i>, deleting position 1 hits both. At lag 4, <i>A</i> has (1,5),(8,12); <i>B</i> has (1,5),(5,9). Other protected lags require two deletions in either array.</p>
+<div class="footer">1 / 4 · Exact geometry, not a model of measured direction-finding accuracy.</div>
+</section>
+<section class="page">
+<div class="eyebrow">The deterministic separation</div>
+<h2>2. Path covers give exact destructive cuts</h2>
+<p><strong>Lemma.</strong> For a fixed positive lag <i>d</i>, form the graph on <i>S</i> with edges {<i>x</i>,<i>x</i>+<i>d</i>}. If its maximal <i>d</i>-step runs have vertex counts ℓ<sub>1</sub>,…,ℓ<sub>r</sub>, then</p>
+<div class="eq">ρ<sub>{d}</sub>(S) = ∑<sub>i</sub> ⌊ℓ<sub>i</sub>/2⌋, &nbsp; ρ<sub>L</sub>(S) = min<sub>d∈L</sub> ρ<sub>{d}</sub>(S).</div>
+<p><em>Proof.</em> Every component is a finite path. Erasing the lag means deleting a vertex cover. A path with ℓ vertices contains ⌊ℓ/2⌋ disjoint edges, forcing that many deletions. Alternating vertices attain this number. Finally, losing any required lag is minimization over its individual deletion problem. ∎</p>
+<p>This uses classical path matching and vertex-cover facts. Neither those facts nor sensor-failure analysis is claimed as new.</p>
+<h2>3. A sharp factor-two bound</h2>
+<p><strong>Theorem 1.</strong> If <i>S,T</i> are homometric finite integer arrays and <i>L</i> is a nonempty common represented positive-lag set, then</p>
+<div class="eq">½ ≤ ρ<sub>L</sub>(S) / ρ<sub>L</sub>(T) ≤ 2.</div>
+<p><em>Proof.</em> Write <i>w</i><sub>d</sub> for their common lag multiplicity and <i>m</i> = min<sub>d∈L</sub><i>w</i><sub>d</sub>. A vertex covers at most two lag-<i>d</i> edges, whereas choosing one endpoint of every edge always covers them. Consequently, for either array,</p>
+<div class="eq">⌈w<sub>d</sub>/2⌉ ≤ ρ<sub>{d}</sub> ≤ w<sub>d</sub>, &nbsp; ⌈m/2⌉ ≤ ρ<sub>L</sub> ≤ m.</div>
+<p>The ratio bound follows. ∎ The proof only needs matching multiplicities on <i>L</i>; full homometry is a stronger condition satisfied by our examples.</p>
+<p><strong>Sharp family.</strong> For every integer <i>q</i> ≥ 1, put</p>
+<div class="eq">A<sub>q</sub> = ⋃<sub>j=0</sub><sup>q−1</sup>(A+18j), &nbsp; B<sub>q</sub> = ⋃<sub>j=0</sub><sup>q−1</sup>(B+18j).</div>
+<p>Their generating polynomials each acquire the same factor ∑<sub>j</sub><i>z</i><sup>18j</sup>, so full homometry is preserved. The nearest cross-block separation is 6 &gt; max <i>L</i>. Lag graphs for <i>L</i> therefore consist of disjoint copies of the base graphs. Hence</p>
+<div class="eq">ρ<sub>L</sub>(A<sub>q</sub>) = 2q, &nbsp; ρ<sub>L</sub>(B<sub>q</sub>) = q.</div>
+<p>Each array has 7<i>q</i> sensors and aperture 18<i>q</i>−6. The tolerance counts are 2<i>q</i>−1 and <i>q</i>−1; the factor-two claim is about minimum destructive cuts, not their tolerance ratio.</p>
+<h2>4. Spectra cannot identify the difference</h2>
+<p>Let <i>P</i><sub>S</sub>(ω)=∑<sub>x∈S</sub>e<sup>iωx</sup>. Expanding |<i>P</i><sub>S</sub>(ω)|² expresses it entirely in the cardinality and difference histogram, so it agrees for each homometric pair at every real ω.</p>
+<p>If sensors independently survive with common probability <i>s</i>=1−<i>p</i>, then</p>
+<div class="eq">E|∑<sub>x∈S</sub>I<sub>x</sub>e<sup>iωx</sup>|² = s²|P<sub>S</sub>(ω)|² + s(1−s)|S|.</div>
+<p>Diagonal terms use E<i>I</i><sub>x</sub>=<i>s</i>; off-diagonal terms use E<i>I</i><sub>x</sub><i>I</i><sub>y</sub>=<i>s</i>². Thus mean damaged spectra also agree. This does not assert equality of damaged-spectrum distributions, phase, or higher moments.</p>
+<div class="footer">2 / 4 · A simple bound, attained with full spectral equality.</div>
+</section>
+<section class="page">
+<div class="eyebrow">The probabilistic strengthening</div>
+<h2>5. Exponential separation at every fixed p</h2>
+<p>Let <i>R</i><sub>S</sub>(<i>q,p</i>) be the probability of losing at least one protected lag in the <i>q</i>-block family. Fix <i>p</i> ∈ (0,1). A two-vertex edge has no surviving pair with probability <i>u</i>=2<i>p</i>−<i>p</i>². A three-vertex path has no surviving edge with probability <i>v</i>=<i>p</i>+<i>p</i>²−<i>p</i>³: either its middle vertex fails, or its middle survives and both endpoints fail.</p>
+<p>Set <i>a</i>=<i>u</i>² and <i>b</i>=<i>uv</i>. Disjoint path components give these one-block lag-absence probabilities:</p>
+<table><tr><th>Array / lag</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr><tr><td>A</td><td>a</td><td>b</td><td>a</td><td>a</td><td>b</td></tr><tr><td>B</td><td>v</td><td>b</td><td>a</td><td>v</td><td>b</td></tr></table>
+<p>Since <i>u</i>−<i>v</i>=<i>p</i>(1−<i>p</i>)² and <i>v</i>−<i>a</i>=<i>p</i>(1−<i>p</i>)³, we have 0 &lt; <i>b</i> &lt; <i>a</i> &lt; <i>v</i> &lt; 1.</p>
+<div class="box"><strong>Theorem 2.</strong> For every fixed <i>p</i> ∈ (0,1),<div class="eq">R<sub>B</sub>(q,p) / R<sub>A</sub>(q,p) ≥ ⅕ (v/a)<sup>q</sup> → ∞,</div><div class="eq">lim<sub>q→∞</sub> [R<sub>B</sub>(q,p) / R<sub>A</sub>(q,p)]<sup>1/q</sup> = v/a &gt; 1.</div></div>
+<p><em>Proof.</em> A lag disappears globally exactly when it disappears in all <i>q</i> blocks. Block independence raises its base absence probability to the <i>q</i>th power. A single lag event and the union bound give</p>
+<div class="eq">a<sup>q</sup> ≤ R<sub>A</sub> ≤ 3a<sup>q</sup>+2b<sup>q</sup> ≤ 5a<sup>q</sup>,<br>v<sup>q</sup> ≤ R<sub>B</sub> ≤ 2v<sup>q</sup>+a<sup>q</sup>+2b<sup>q</sup> ≤ 5v<sup>q</sup>.</div>
+<p>Divide the inequalities and take <i>q</i>th roots. ∎ No independence between different lag events is used. <strong>Both absolute risks tend to zero.</strong> The unbounded ratio is not a claim of growing absolute failure probability.</p>
+<h3>Exact values, not Monte Carlo estimates</h3>
+<table><tr><th>Sensors</th><th>R<sub>A</sub> at p=0.01</th><th>R<sub>B</sub> at p=0.01</th><th>Ratio</th></tr><tr><td>7</td><td>1.17322939801 × 10<sup>−3</sup></td><td>2.038322840599 × 10<sup>−2</sup></td><td>17.37</td></tr><tr><td>14</td><td>5.09964704186222 × 10<sup>−7</sup></td><td>2.04116734490999 × 10<sup>−4</sup></td><td>400.26</td></tr><tr><td>21</td><td>1.98362629055186 × 10<sup>−10</sup></td><td>2.06005027978686 × 10<sup>−6</sup></td><td>10,385.27</td></tr></table>
+<p class="small">Displayed risks are probabilities, not percentages; rounded from exact rational arithmetic. At 21 sensors, these are roughly one in 5.04 billion and one in 485,425 under this structural model.</p>
+<p>For nonempty <i>T</i> ⊆ <i>L</i>, let <i>h</i><sub>S</sub>(<i>T,p</i>) be the probability all lags in <i>T</i> are absent in one block. Inclusion-exclusion gives</p>
+<div class="eq">R<sub>S</sub>(q,p) = ∑<sub>∅≠T⊆L</sub> (−1)<sup>|T|+1</sup> h<sub>S</sub>(T,p)<sup>q</sup>.</div>
+<p class="small">All 31 terms come from the 128 base deletion states. In general this is <em>not</em> <i>R</i><sub>S</sub>(1,<i>p</i>)<sup>q</sup>.</p>
+<div class="footer">3 / 4 · A fixed-probability theorem, not merely a p → 0 observation.</div>
+</section>
+<section class="page">
+<div class="eyebrow">Evidence, scope and attribution</div>
+<h2>6. What this result does not establish</h2>
+<ul><li>Only lags 1,…,5 are protected. Full-aperture protection has a unique endpoint pair and hence a one-deletion vulnerability in any nontrivial finite line array.</li><li>The block family holds the protected lag set fixed as the array grows. It is not an aperture-optimal design or a result about a growing protected bandwidth.</li><li>Failure means exact loss of a required pair separation. It is not a theorem about estimator error, source resolution, noise, coupling, approximate distances, or actual device reliability.</li><li>The probability and mean-spectrum identities assume unit weights and independent, identical failure probabilities. Correlation or heterogeneous sensor reliability requires a different calculation.</li><li>No claim is made that phase or higher-order damaged-spectrum statistics cannot distinguish the arrays.</li></ul>
+<h2>7. Prior work and originality</h2>
+<p>Homometry and nonuniqueness of autocorrelation are classical [4]. Sparse-array essentialness, fragility and destructive failure families were developed by Liu and Vaidyanathan [1,2]. Shared-sensor dependencies are explicitly discussed in recent array-failure work [3]. Those concepts are not contributions of this note.</p>
+<p id="novelty-verdict"><strong>Candidate scope.</strong> The result assembled here is the explicit full-homometry construction with a sharp cut ratio and a fixed-<i>p</i> exponential risk ratio. The cut bound itself is an immediate degree-two graph argument; the probability strengthening is elementary block amplification. The bounded review found no explicit match in the inspected sources, but identified a strong objection: this may be an example-level synthesis of established homometry and failure-family theory. Several foundational full texts and forward citations remain unchecked. The fixed-p amplification was derived separately and is not novelty-cleared. Specialist assessment is required before a novelty claim.</p>
+<h2>8. Reproduction and research provenance</h2>
+<p>The accompanying dependency-free JavaScript programs run under modern Node.js:</p>
+<pre>node verify-homometric.js
+node verify-risk-amplification.js</pre>
+<p>The first checks all 128 deletion masks of each base array, complete difference histograms, cuts and ten expanded families. The second uses exact BigInt arithmetic and compares inclusion-exclusion against a separate 32-state intersection convolution. It also checks all 16,384 deletion masks of each 14-sensor array at <i>p</i>=0.01, 0.5 and 0.9. Finite computations test examples; the proofs establish the infinite statements.</p>
+<p class="small">Prepared through AI-assisted exploration initiated by Spooky (@5p00kyy). An AI assistant running in OpenClaw generated the construction, arguments, code and exposition; separate AI sessions challenged the mathematics and searched prior work. Retained reports distinguish these checks from human peer review. No proof-assistant formalization, human specialist endorsement or journal submission is claimed. This draft accompanies the public Equal Spectra explainer. No researcher contact was made for this release.</p>
+<h3>Selected references</h3>
+<ol class="small"><li>C.-L. Liu and P. P. Vaidyanathan. “Robustness of Difference Coarrays of Sparse Arrays to Sensor Failures, Part I: A Theory Motivated by Coarray MUSIC.” <em>IEEE TSP</em> 67(12), 3213–3226 (2019). <a href="https://doi.org/10.1109/TSP.2019.2912882">doi:10.1109/TSP.2019.2912882</a>.</li><li>C.-L. Liu and P. P. Vaidyanathan. “Novel algorithms for analyzing the robustness of difference coarrays to sensor failures.” <em>Signal Processing</em> 171, 107517 (2020). <a href="https://doi.org/10.1016/j.sigpro.2020.107517">doi:10.1016/j.sigpro.2020.107517</a>. Public manuscript inspected.</li><li>N. Malik, A. Patwari and Sangeetha N. “An Interactive Graphical Tool to Check the Coarray Continuity of Two-Fold Redundant Sparse Arrays (TFRSAs) Under Single Sensor Failures” (2026). <a href="https://arxiv.org/abs/2604.23262">arXiv:2604.23262</a>. Full-text introduction inspected.</li><li>U. Grimm and M. Baake. “Homometric Point Sets and Inverse Problems” (2008). <a href="https://arxiv.org/abs/0808.0094">arXiv:0808.0094</a>; <a href="https://doi.org/10.1524/zkri.2008.1043">doi:10.1524/zkri.2008.1043</a>. Full-text homometry and autocorrelation discussion inspected.</li></ol>
+<div class="footer">4 / 4 · Review draft. Correctness, novelty and usefulness are separate questions.</div>
+</section></body></html>

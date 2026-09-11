@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="An interactive research note about homometric sensor arrays and unequal deletion risk."
+    />
+    <title>Equal / Spectra | Same spectrum. Different ways to break.</title>
+    <link rel="canonical" href="https://5p00kyy.github.io/equal-spectra/" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Same spectrum. Different ways to break."
+    />
+    <meta
+      property="og:description"
+      content="Break two equal-spectrum arrays yourself, then explore exact failure risks. An AI-assisted, reproducible mathematical explainer. Originality unresolved."
+    />
+    <meta
+      property="og:url"
+      content="https://5p00kyy.github.io/equal-spectra/"
+    />
+    <meta
+      property="og:image"
+      content="https://5p00kyy.github.io/equal-spectra/assets/preview.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Equal Spectra: matching power traces and different shared-sensor dependencies"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="./assets/equal-mark.svg" />
+    <meta name="theme-color" content="#1b202b" />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#experiment">Skip to experiment</a>
+    <header class="site-header shell">
+      <a class="brand" href="./" aria-label="Equal Spectra home">
+        <img src="./assets/equal-mark.svg" alt="" width="28" height="28" />
+        <span>Equal <i>/</i> Spectra</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#experiment">Experiment</a>
+        <a href="#risk">Risk explorer</a>
+        <a href="#research-note">Research note</a>
+      </nav>
+      <span class="header-index" aria-hidden="true">01 / 05</span>
+    </header>
+
+    <main>
+      <section class="hero shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="kicker">
+            <span class="rule"></span>An interactive research note
+          </p>
+          <p class="status">
+            <span class="status-dot"></span>Originality unresolved
+          </p>
+          <h1 id="hero-title">
+            Same spectrum.<br /><em>Different ways to break.</em>
+          </h1>
+          <p class="hero-deck">
+            Two seven-sensor arrays share every intact distance count. Remove
+            sensors, and the hidden structure starts to matter.
+          </p>
+          <div class="hero-actions">
+            <a class="text-link" href="#experiment"
+              >Enter the instrument <span aria-hidden="true">↘</span></a
+            >
+            <a
+              class="text-link source-link"
+              href="https://github.com/5p00kyy/equal-spectra"
+              >Source <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+        <div
+          class="hero-instrument"
+          aria-label="Preview of the two equal spectra"
+        >
+          <div class="instrument-meta">
+            <span>FIG. 01</span><span>POWER / 49 · ω</span
+            ><span>UNIT WEIGHT</span>
+          </div>
+          <div class="hero-chart" aria-hidden="true">
+            <svg viewBox="0 0 560 207" preserveAspectRatio="none">
+              <g class="hero-ticks">
+                <text x="31" y="32" text-anchor="end">1</text>
+                <text x="31" y="105" text-anchor="end">0.5</text>
+                <text x="31" y="178" text-anchor="end">0</text>
+              </g>
+              <g class="chart-grid">
+                <path
+                  d="M42 28H548M42 101H548M42 174H548M42 28V174M143 28V174M244 28V174M345 28V174M446 28V174M548 28V174"
+                />
+              </g>
+              <path id="hero-power-a" class="hero-line line-a" />
+              <path id="hero-power-b" class="hero-line line-b" />
+              <line class="chart-baseline" x1="42" y1="174" x2="548" y2="174" />
+              <g class="hero-ticks hero-frequency-ticks">
+                <text x="42" y="200">0</text>
+                <text x="295" y="200" text-anchor="middle">π</text>
+                <text x="548" y="200" text-anchor="end">2π</text>
+              </g>
+            </svg>
+          </div>
+          <figure class="hero-witness">
+            <figcaption>
+              <span>Distance 1</span><span>2 pairs each</span>
+            </figcaption>
+            <img
+              src="./assets/witness-pairs.svg"
+              width="480"
+              height="160"
+              alt="Distance-one witness schematic, not to spatial scale. Array A: disjoint pairs (0, 1) and (7, 8). Array B: pairs (0, 1) and (1, 2) share position 1. Both have two pairs, but different dependencies."
+            />
+            <p>Schematic, not to spatial scale · true position labels</p>
+          </figure>
+          <div class="hero-arrays">
+            <div class="hero-array">
+              <b class="array-chip chip-a">A</b
+              ><span>{0, 1, 5, 7, 8, 10, 12}</span>
+            </div>
+            <div class="hero-array">
+              <b class="array-chip chip-b">B</b
+              ><span>{0, 1, 2, 5, 7, 9, 12}</span>
+            </div>
+          </div>
+          <div class="instrument-caption">
+            <span>IDENTICAL POWER TRACE</span><span>Δ COUNTS = 0</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="experiment"
+        class="bench-section"
+        aria-labelledby="experiment-title"
+      >
+        <div class="shell">
+          <div class="section-heading dark-heading">
+            <div>
+              <p class="eyebrow">02 / The instrument</p>
+              <h2 id="experiment-title">
+                Delete a sensor.<br /><em>Watch the dependencies.</em>
+              </h2>
+            </div>
+            <p class="heading-note">
+              Labels give true integer positions. Arcs join surviving witness
+              pairs at your selected lag.
+            </p>
+          </div>
+          <div class="bench-layout">
+            <div class="array-board" aria-label="Sensor array controls">
+              <div class="board-topline">
+                <span>POSITION / INTEGER UNITS</span
+                ><span id="selected-lag-label"
+                  >SELECTED LAG <strong>01</strong></span
+                >
+              </div>
+              <div class="array-row" data-array-row="A">
+                <div class="row-label">
+                  <b class="array-chip chip-a">A</b><span>seven sensors</span>
+                </div>
+                <div class="array-track-wrap">
+                  <div
+                    id="track-a"
+                    class="array-track"
+                    role="group"
+                    aria-label="Array A sensors"
+                  ></div>
+                </div>
+              </div>
+              <div class="array-row" data-array-row="B">
+                <div class="row-label">
+                  <b class="array-chip chip-b">B</b><span>seven sensors</span>
+                </div>
+                <div class="array-track-wrap">
+                  <div
+                    id="track-b"
+                    class="array-track"
+                    role="group"
+                    aria-label="Array B sensors"
+                  ></div>
+                </div>
+              </div>
+              <div class="axis-labels" aria-hidden="true">
+                <span>0</span><span>1</span><span>2</span><span>3</span
+                ><span>4</span><span>5</span><span>6</span><span>7</span
+                ><span>8</span><span>9</span><span>10</span><span>11</span
+                ><span>12</span>
+              </div>
+              <p class="mobile-schematic">
+                Small-screen schematic: sensors are arranged by index in two
+                rows, not to spatial scale. Numbers are their true positions.
+              </p>
+              <p class="board-help">
+                <span class="arc-key"></span> A connected pair contributes one
+                count to the selected distance. A solid, B dashed; an inner ring
+                marks a witness, a slash marks deletion. Select any sensor to
+                delete or restore it.
+              </p>
+            </div>
+            <aside class="control-panel" aria-label="Experiment controls">
+              <div class="control-block">
+                <p class="eyebrow">Choose a protected distance</p>
+                <div
+                  class="lag-picker"
+                  role="group"
+                  aria-label="Select protected distance"
+                >
+                  <button
+                    class="lag-button is-selected"
+                    type="button"
+                    data-lag="1"
+                    aria-pressed="true"
+                  >
+                    01</button
+                  ><button
+                    class="lag-button"
+                    type="button"
+                    data-lag="2"
+                    aria-pressed="false"
+                  >
+                    02</button
+                  ><button
+                    class="lag-button"
+                    type="button"
+                    data-lag="3"
+                    aria-pressed="false"
+                  >
+                    03</button
+                  ><button
+                    class="lag-button"
+                    type="button"
+                    data-lag="4"
+                    aria-pressed="false"
+                  >
+                    04</button
+                  ><button
+                    class="lag-button"
+                    type="button"
+                    data-lag="5"
+                    aria-pressed="false"
+                  >
+                    05
+                  </button>
+                </div>
+              </div>
+              <div class="control-block guided">
+                <p class="eyebrow">A fair comparison</p>
+                <button id="guided-delete" class="guided-button" type="button">
+                  <span>Remove position 1</span
+                  ><span aria-hidden="true">↘</span>
+                </button>
+                <p class="microcopy">
+                  Restores both arrays first, then deletes position 1 and
+                  selects lag 1.
+                </p>
+              </div>
+              <button id="reset" class="reset-button" type="button">
+                Reset both arrays <span aria-hidden="true">↺</span>
+              </button>
+            </aside>
+          </div>
+          <div class="readout-grid">
+            <article class="readout-card">
+              <div class="readout-title">
+                <span class="array-chip chip-a">A</span><span>Array A</span>
+              </div>
+              <p class="readout-state" id="state-a">Intact · 7 / 7 sensors</p>
+              <div class="lag-status" id="status-a"></div>
+              <p class="cut-line">
+                Selected pair count <strong id="pairs-a">2</strong>
+              </p>
+              <div class="witness-readout">
+                <p id="witness-label-a">Surviving pairs · distance 1</p>
+                <ul id="witness-pairs-a" aria-labelledby="witness-label-a"></ul>
+              </div>
+            </article>
+            <article class="readout-card">
+              <div class="readout-title">
+                <span class="array-chip chip-b">B</span><span>Array B</span>
+              </div>
+              <p class="readout-state" id="state-b">Intact · 7 / 7 sensors</p>
+              <div class="lag-status" id="status-b"></div>
+              <p class="cut-line">
+                Selected pair count <strong id="pairs-b">2</strong>
+              </p>
+              <div class="witness-readout">
+                <p id="witness-label-b">Surviving pairs · distance 1</p>
+                <ul id="witness-pairs-b" aria-labelledby="witness-label-b"></ul>
+              </div>
+            </article>
+            <div class="readout-summary">
+              <p class="eyebrow">The observation</p>
+              <p id="live-note">
+                Equal distance counts hide different shared dependencies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="result"
+        class="spectrum-section shell"
+        aria-labelledby="spectrum-title"
+      >
+        <div class="section-heading light-heading">
+          <div>
+            <p class="eyebrow">03 / The shared measurement</p>
+            <h2 id="spectrum-title">
+              The spectrum cannot tell<br /><em>the whole story.</em>
+            </h2>
+          </div>
+          <p class="heading-note">
+            Power is the squared magnitude of the array response. It sees the
+            histogram, not which pairs share a sensor.
+          </p>
+        </div>
+        <div class="spectrum-layout">
+          <div class="plot-card">
+            <div class="plot-head">
+              <div>
+                <p class="plot-label" id="plot-label">Intact power spectra</p>
+                <p class="plot-sub">
+                  P(ω) = | Σ e<sup>iωx</sup> |² · fixed power scale 0–49
+                </p>
+              </div>
+              <label class="plot-mode"
+                >VIEW
+                <select id="plot-mode">
+                  <option value="intact">Intact arrays</option>
+                  <option value="current">Current survivors</option>
+                </select></label
+              >
+            </div>
+            <div
+              id="spectrum-plot"
+              class="spectrum-plot"
+              role="img"
+              aria-label="Intact power spectra for arrays A and B"
+            ></div>
+            <div class="plot-axis" aria-hidden="true">
+              <span>0</span><span>π</span><span>2π</span>
+            </div>
+            <div class="plot-legend">
+              <span><i class="legend-line legend-a"></i> Array A</span
+              ><span><i class="legend-line legend-b"></i> Array B</span>
+            </div>
+          </div>
+          <div class="result-notes">
+            <div class="result-stat">
+              <span>Intact ρ<sub>L</sub>(A)</span><strong>2</strong
+              ><small>minimum deletions<br />to lose a protected lag</small>
+            </div>
+            <div class="result-stat result-stat-b">
+              <span>Intact ρ<sub>L</sub>(B)</span><strong>1</strong
+              ><small>minimum deletions<br />to lose a protected lag</small>
+            </div>
+            <p class="result-copy">
+              For the intact starting arrays: same histogram, unequal failure
+              risk. In A, distance-one pairs are disjoint. In B, they share
+              position 1. One deletion can erase both.
+            </p>
+          </div>
+        </div>
+        <figure class="histogram-card" aria-labelledby="histogram-title">
+          <figcaption>
+            <p class="plot-label" id="histogram-title">
+              Complete distance histogram
+            </p>
+            <p class="plot-sub">
+              Intact arrays · lags 1–12 · 21 pairs per array. Counts above,
+              distance below.
+            </p>
+          </figcaption>
+          <div
+            id="distance-histogram"
+            class="distance-histogram"
+            role="img"
+            aria-label="Intact distance counts for A and B"
+          ></div>
+          <p class="histogram-key">
+            <span><i class="legend-line legend-a"></i>A solid</span
+            ><span><i class="legend-line legend-b"></i>B dashed</span
+            ><span>Matching counts at every lag</span>
+          </p>
+          <p id="histogram-text" class="sr-only"></p>
+        </figure>
+      </section>
+
+      <section
+        id="risk"
+        class="risk-section shell"
+        aria-labelledby="risk-title"
+      >
+        <div class="section-heading light-heading">
+          <div>
+            <p class="eyebrow">04 / The amplification</p>
+            <h2 id="risk-title">
+              Same averages.<br /><em>A widening risk gap.</em>
+            </h2>
+          </div>
+          <p class="heading-note">
+            The mean randomly damaged power spectra still agree. The chance of
+            losing a protected distance does not.
+          </p>
+        </div>
+        <p class="risk-intro">
+          This explorer starts with <strong>intact arrays</strong> and is
+          independent of the manual experiment above. Each sensor then fails
+          independently with the same probability <i>p</i>. Failure means losing
+          at least one distance in L = {1, 2, 3, 4, 5}.
+        </p>
+        <div class="risk-controls">
+          <div>
+            <label for="risk-q"
+              >Repeated blocks
+              <output aria-live="off" id="q-output" for="risk-q"
+                >1 block · 7 sensors per array</output
+              ></label
+            ><input
+              id="risk-q"
+              type="range"
+              min="1"
+              max="10"
+              step="1"
+              value="1"
+            />
+            <div class="range-ends">
+              <span>1 block</span><span>10 blocks</span>
+            </div>
+          </div>
+          <div>
+            <label for="risk-p"
+              >Per-sensor failure
+              <output aria-live="off" id="p-output" for="risk-p"
+                >1.0%</output
+              ></label
+            ><input
+              id="risk-p"
+              type="range"
+              min="1"
+              max="500"
+              step="1"
+              value="10"
+            />
+            <div class="range-ends"><span>0.1%</span><span>50.0%</span></div>
+          </div>
+          <button id="risk-preset" class="outline-button" type="button">
+            Try 21 sensors
+          </button>
+        </div>
+        <div class="risk-readouts">
+          <article class="risk-value risk-value-a">
+            <p class="plot-label">
+              <span class="array-chip chip-a">A</span> Absolute loss risk
+            </p>
+            <output aria-live="off" id="risk-a" for="risk-q risk-p"></output>
+            <p id="risk-a-readable"></p>
+          </article>
+          <article class="risk-value risk-value-b">
+            <p class="plot-label">
+              <span class="array-chip chip-b">B</span> Absolute loss risk
+            </p>
+            <output aria-live="off" id="risk-b" for="risk-q risk-p"></output>
+            <p id="risk-b-readable"></p>
+          </article>
+          <article class="risk-value risk-ratio">
+            <p class="plot-label">B / A risk ratio</p>
+            <output
+              aria-live="off"
+              id="risk-ratio"
+              for="risk-q risk-p"
+            ></output>
+            <p>Times as likely to lose a protected lag</p>
+          </article>
+        </div>
+        <p class="risk-caveat">
+          <strong>Both absolute risks fall as blocks are added.</strong> A
+          growing ratio does not mean growing absolute danger. The protected set
+          stays fixed at five distances.
+        </p>
+        <div class="risk-detail-layout">
+          <div class="plot-card">
+            <p class="plot-label">Loss probability across 7 to 70 sensors</p>
+            <p class="plot-sub">
+              Logarithmic y-axis · shared A/B scale · probability, not percent
+            </p>
+            <div
+              id="risk-plot"
+              class="risk-plot"
+              role="img"
+              aria-label="Exact loss probabilities by sensor count"
+            ></div>
+            <div class="plot-legend">
+              <span><i class="legend-line legend-a"></i> Array A · solid</span
+              ><span
+                ><i class="legend-line legend-b"></i> Array B · dashed</span
+              >
+            </div>
+          </div>
+          <aside class="construction">
+            <p class="eyebrow">The separated-block construction</p>
+            <p>
+              Repeat the seven-sensor motif at offsets 0, 18, 36, … . The
+              closest cross-block gap is <strong>6 &gt; 5</strong>, so no
+              protected witness pair crosses a block boundary.
+            </p>
+            <div id="block-diagram" class="block-diagram" role="img"></div>
+            <p class="plot-sub">
+              Schematic blocks, not a spatial plot. Each block contains seven
+              sensors.
+            </p>
+            <dl class="cut-summary">
+              <div>
+                <dt>Minimum destructive cuts</dt>
+                <dd id="block-cuts"></dd>
+              </div>
+              <div>
+                <dt>Guaranteed deletion tolerance</dt>
+                <dd id="block-tolerance"></dd>
+              </div>
+            </dl>
+            <p class="plot-sub">
+              Cuts are 2q versus q; tolerances are 2q − 1 versus q − 1.
+            </p>
+          </aside>
+        </div>
+        <details class="risk-table-details">
+          <summary>Compare all 10 block counts</summary>
+          <div
+            class="table-scroll"
+            role="region"
+            aria-label="Risk comparison data, scroll horizontally if needed"
+            tabindex="0"
+          >
+            <table class="risk-table">
+              <caption id="risk-table-caption"></caption>
+              <thead>
+                <tr>
+                  <th scope="col">Sensors</th>
+                  <th scope="col">A loss risk</th>
+                  <th scope="col">B loss risk</th>
+                  <th scope="col">B / A</th>
+                </tr>
+              </thead>
+              <tbody id="risk-table-body"></tbody>
+            </table>
+          </div>
+        </details>
+        <details class="exact-details">
+          <summary>Inspect the exact current calculation</summary>
+          <p>
+            Rounded display values above come from exact integer arithmetic, not
+            simulation. Both risk fractions below share the same denominator.
+            The ratio is numerator B / numerator A.
+          </p>
+          <dl class="exact-fractions">
+            <dt>A numerator</dt>
+            <dd id="exact-a"></dd>
+            <dt>B numerator</dt>
+            <dd id="exact-b"></dd>
+            <dt>Common denominator</dt>
+            <dd id="exact-denominator"></dd>
+          </dl>
+          <button id="download-risk" class="outline-button" type="button">
+            Download exact values · JSON
+          </button>
+        </details>
+      </section>
+
+      <section
+        id="research-note"
+        class="note-section shell"
+        aria-labelledby="note-title"
+      >
+        <div>
+          <p class="eyebrow">05 / Scope &amp; provenance</p>
+          <h2 id="note-title">
+            An exact result,<br /><em>not a novelty claim.</em>
+          </h2>
+          <a class="download-link" href="./downloads/research-note.pdf" download
+            >Download the research note · PDF
+            <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <div class="note-copy">
+          <p>
+            Homometry and sparse-array failure analysis are established. The
+            originality of this explicit construction, sharp cut comparison and
+            fixed-p amplification remains unresolved. A bounded literature
+            search is not proof of novelty.
+          </p>
+          <p>
+            The model uses distinct, unit-weight integer sensors, fixed
+            protected lags 1 through 5 and independent, identically distributed
+            failures. It is not an optimized hardware design or a measurement of
+            estimator accuracy. Full-aperture protection is not claimed. Equal
+            mean spectra do not imply equal phase or equal damaged-spectrum
+            distributions.
+          </p>
+        </div>
+        <div class="research-details">
+          <details>
+            <summary>Why the cut ratio is at most two</summary>
+            <p>
+              For a positive lag d, connect sensors separated by d. Every
+              component is a path. Removing all edges requires a vertex cover: a
+              path with ℓ vertices needs exactly ⌊ℓ/2⌋ deletions, attained by
+              alternating vertices. Sum over paths, then minimize over protected
+              lags.
+            </p>
+            <p>
+              A vertex hits at most two edges, while choosing one endpoint per
+              edge always works. With m the smallest protected-lag multiplicity,
+              each homometric array has ⌈m/2⌉ ≤ ρ<sub>L</sub> ≤ m. Their
+              destructive-cut ratio is therefore at most two. The separated
+              motifs attain cuts 2q and q. This is a cut ratio, not a tolerance
+              ratio.
+            </p>
+          </details>
+          <details>
+            <summary>Why the fixed-p risk ratio grows exponentially</summary>
+            <p>
+              Fix 0 &lt; p &lt; 1. One edge loses its witness with probability u
+              = 2p − p². A three-vertex path loses both edges with probability v
+              = p + p² − p³. Put a = u². In A every protected lag has absence
+              probability at most a; in B lag 1 has absence probability v.
+            </p>
+            <p>
+              A lag disappears globally only when absent in all q independent
+              blocks. A union bound gives R<sub>A</sub> ≤ 5a<sup>q</sup>, while
+              R<sub>B</sub> ≥ v<sup>q</sup>. Hence
+              <strong>R<sub>B</sub> / R<sub>A</sub> ≥ ⅕(v/a)<sup>q</sup></strong
+              >. Since v − a = p(1 − p)³ &gt; 0, the bound grows exponentially.
+              Both absolute risks tend to zero. No independence between
+              different lag events is assumed.
+            </p>
+            <p>
+              The mean damaged power is (1 − p)² × intact power + p(1 − p) ×
+              sensor count, equal for both arrays. Exact loss probabilities
+              instead enumerate all 128 base deletion states and combine their
+              five-lag absence masks across blocks.
+            </p>
+          </details>
+          <details>
+            <summary>Sources, checks and AI involvement</summary>
+            <p>
+              Exploration initiated and directed by
+              <strong>Spooky (@5p00kyy)</strong>, with an AI assistant running
+              in OpenClaw. AI generated the construction, arguments, code, tests
+              and exposition. Separate AI sessions independently challenged the
+              mathematics and searched prior work. This is
+              <strong>not human peer review</strong> or proof-assistant
+              formalization. Originality remains unresolved.
+            </p>
+            <p>
+              Run <code>npm test</code> and <code>npm run verify</code> from the
+              project checkout. Finite checks test examples; the arguments
+              establish the infinite statements.
+            </p>
+            <ul class="source-links">
+              <li>
+                <a href="./src/math.js">Calculation engine</a> ·
+                <a href="./test/math.test.js">Engine tests</a>
+              </li>
+              <li>
+                <a href="./research/verify-homometric.js"
+                  >Original base verifier</a
+                >
+                ·
+                <a href="./research/verify-risk-amplification.js"
+                  >Original amplification verifier</a
+                >
+              </li>
+              <li>
+                <a href="./research/note.html">Readable research note</a> ·
+                <a href="./README.md">Project source and reproduction guide</a>
+              </li>
+            </ul>
+            <p>
+              An educational, reproducible research project. Explore the
+              <a href="https://github.com/5p00kyy/equal-spectra"
+                >public source on GitHub</a
+              >
+              or
+              <a href="https://github.com/5p00kyy/equal-spectra/issues"
+                >report a correction</a
+              >. The file links above also open the sources bundled with this
+              note.
+            </p>
+          </details>
+          <div class="citations">
+            <p class="eyebrow">
+              Prior work / a starting point, not novelty clearance
+            </p>
+            <ol>
+              <li>
+                Liu &amp; Vaidyanathan (2019),
+                <a href="https://doi.org/10.1109/TSP.2019.2912882"
+                  >Robustness of Difference Coarrays of Sparse Arrays to Sensor
+                  Failures, Part I</a
+                >.
+              </li>
+              <li>
+                Liu &amp; Vaidyanathan (2020),
+                <a href="https://doi.org/10.1016/j.sigpro.2020.107517"
+                  >Novel algorithms for analyzing the robustness of difference
+                  coarrays to sensor failures</a
+                >.
+              </li>
+              <li>
+                Malik, Patwari &amp; Sangeetha (2026),
+                <a href="https://arxiv.org/abs/2604.23262"
+                  >An Interactive Graphical Tool to Check the Coarray Continuity
+                  of Two-Fold Redundant Sparse Arrays Under Single Sensor
+                  Failures</a
+                >.
+              </li>
+              <li>
+                Grimm &amp; Baake (2008),
+                <a href="https://arxiv.org/abs/0808.0094"
+                  >Homometric Point Sets and Inverse Problems</a
+                >.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer shell">
+      <span>Equal / Spectra</span
+      ><span>Spooky / @5p00kyy · AI-assisted research</span
+      ><a href="https://github.com/5p00kyy/equal-spectra">GitHub ↗</a>
+    </footer>
+    <noscript
+      ><div class="noscript shell">
+        <strong>JavaScript is required for the instrument.</strong><br />Core
+        example: A = {0, 1, 5, 7, 8, 10, 12}; B = {0, 1, 2, 5, 7, 9, 12}. Both
+        share histogram (2, 3, 2, 2, 3, 1, 3, 1, 1, 1, 1, 1), while their
+        protected-lag deletion cuts differ.
+        <a href="./downloads/research-note.pdf">Read the research note.</a>
+      </div></noscript
+    >
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "equal-spectra",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "verify": "node research/verify-homometric.js && node research/verify-risk-amplification.js",
+    "start": "node scripts/serve.mjs",
+    "offline": "node scripts/build-offline.mjs"
+  }
+}
